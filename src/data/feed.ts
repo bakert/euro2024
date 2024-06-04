@@ -1,7 +1,6 @@
 import {
     teams
 } from "../data/data.ts"
-import { Status } from "../models/models.ts"
 import type { FeedT, MatchT } from "../models/models.ts"
 
 const response = await fetch("https://bluebones.net/matches.json")
@@ -9,9 +8,6 @@ const matches = await response.json()
 
 const feed: FeedT = {
     matches: [],
-    lastMatches: [],
-    currentMatches: [],
-    nextMatches: [],
 }
 
 matches.forEach((match: MatchT) => {

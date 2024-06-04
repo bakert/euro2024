@@ -3,9 +3,11 @@ import Layout from "../../layouts/Layout.astro"
 import Person from "../../components/Person.astro"
 import Team from "../../components/Team.astro"
 import { people } from "../../data/people.ts"
-const rows = [];
-Object.values(people).forEach((person) => {
-    rows.push([person.name, person.teams.map((t) => t.name)])
+import type { PersonT, TeamT } from "../../models/models.ts"
+
+const rows: [string, string[]][] = [];
+Object.values(people).forEach((person: PersonT) => {
+    rows.push([person.name, person.teams?.map((t: TeamT) => t.name) ?? []])
 })
 
 ---
@@ -17,7 +19,7 @@ Object.values(people).forEach((person) => {
                 <Person name={person} />
             </div>
             <div class="teams owned">
-                {teams.map((t, index) => (
+                {teams.map((t: string, index: number) => (
                     <span class="team">
                         <Team name={t} />{index < teams.length - 1 && <span>,</span>}
                     </span>
