@@ -3,10 +3,11 @@ import {
     olympiastadion
 } from "../data/data.ts";
 import now from "../data/now.ts";
+import type { FeedT } from "../models/models.ts";
 
-const data = {
+const data: FeedT = {
     matches: {
-        1: {
+        "1": {
             kickoff: new Date("2024-06-14T19:00:00Z"),
             stage: "Group A",
             home: germany,
@@ -27,32 +28,37 @@ const data = {
                 }
             }
         },
-        2: {
+        "2": {
             kickoff: new Date("2024-06-15T13:00:00Z"),
             stage: "Group B",
             home: france,
             away: portugal,
             stadium: olympiastadion,
         },
-        3: {
+        "3": {
             kickoff: new Date("2024-06-16T16:00:00Z"),
+            stage: "Group B",
             home: spain,
             away: belgium,
             stadium: olympiastadion,
         },
-        4: {
+        "4": {
             kickoff: new Date("2024-06-17T20:00:00Z"),
+            stage: "Group C",
             home: england,
             away: austria,
             stadium: olympiastadion,
         },
-        5: {
+        "5": {
             kickoff: new Date("2024-06-18T18:00:00Z"),
+            stage: "Group ",
             home: turkiye,
             away: scotland,
             stadium: olympiastadion,
         }
-    }
+    },
+    lastMatches: [],
+    nextMatches: [],
 }
 
 // Add lastMatches and nextMatches
