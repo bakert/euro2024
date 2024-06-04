@@ -13,6 +13,8 @@
     "@astrojs/check": "^0.7.0",
     "@astrojs/netlify": "^5.2.1",
     "astro": "^4.9.2",
+    "dayjs": "^1.11.11",
+    "dayjs-with-plugins": "^1.0.3",
     "typescript": "^5.4.5"
   }
 }
