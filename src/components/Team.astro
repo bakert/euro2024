@@ -1,4 +1,4 @@
 ---
-const { name } = Astro.props
+const { class: className, name, ...rest } = Astro.props
 ---
-<a href={`/teams/${name.toLowerCase()}/`}>{name}</a>
+<a class={className} href={`/teams/${name.toLowerCase()}/`} {...rest}>{name}</a>

@@ -1,11 +1,43 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import Person from "../../components/Person.astro"
+import Team from "../../components/Team.astro"
 import { people } from "../../data/people.ts"
+const rows = [];
+Object.values(people).forEach((person) => {
+    rows.push([person.name, person.teams.map((t) => t.name)])
+})
+
 ---
 <Layout title="People">
     <h1>People</h1>
-    <ul>
-        {Object.values(people).map((person) => <li><Person name={person.name} /></li>)}
-    </ul>
+    <div class="people">
+        {rows.map(([person, teams]) =>
+            <div class="person">
+                <Person name={person} />
+            </div>
+            <div class="teams owned">
+                {teams.map((t, index) => (
+                    <span class="team">
+                        <Team name={t} />{index < teams.length - 1 && <span>,</span>}
+                    </span>
+                ))}
+            </div>
+        )}
+    </div>
 </Layout>
+
+<style>
+    .people {
+        display: grid;
+        grid-template: "person teams";
+        grid-template-columns: 168px 1fr;
+    }
+
+    /* BAKERT this is kind of the same as .person */
+    .owned, .owned a {
+        color: var(--deemphasized-text-color);
+        font-size: 18px;
+        /* BAKERT these sit too high - increase line-height? */
+    }
+</style>

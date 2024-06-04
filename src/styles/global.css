@@ -48,7 +48,7 @@ body {
     font-weight: normal;
 }
 
-h1, h2, p, th, td, li {
+h1, h2, p, th, td, li, div.people {
     padding: 0 16px;
 }
 
