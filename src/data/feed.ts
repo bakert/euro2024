@@ -15,8 +15,8 @@ const feed: FeedT = {
 }
 
 matches.forEach((match: MatchT) => {
-    const home = teams[match.home.name] ?? match.home
-    const away = teams[match.away.name] ?? match.away
+    const home = teams[match.home.name.toLowerCase()] ?? match.home
+    const away = teams[match.away.name.toLowerCase()] ?? match.away
     const kickoff = new Date(match.kickoff)
     const m: MatchT = {
         ...match,
