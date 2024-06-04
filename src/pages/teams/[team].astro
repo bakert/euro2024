@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Match from "../../components/Match.astro";
 import { teams } from "../../data/teams.ts";
-import matches from "../../data/matches.ts";
+import feed from "../../data/feed.ts";
 import { Status } from "../../models/models.ts";
 import type { MatchT } from "../../models/models.ts";
 
@@ -14,7 +14,7 @@ const thisTeam = (match: MatchT) => {
         (match.away && match.away.name === team.name));
 }
 
-const thisTeamMatches = matches.matches.filter((m) => thisTeam(m))
+const thisTeamMatches = feed.matches.filter((m) => thisTeam(m))
 const fixtures = thisTeamMatches.filter((m) => m.status === Status.UPCOMING);
 const inProgress = thisTeamMatches.filter((m) => m.status === Status.CURRENT);
 const results = thisTeamMatches.filter((m) => m.status === Status.FINISHED);

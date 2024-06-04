@@ -1,16 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Match from "../components/Match.astro"
-import matches from "../data/matches.ts";
+import feed from "../data/feed.ts";
 import type { MatchT } from "../models/models.ts";
 ---
 
 <Layout title="Home">
     <h1>Home</h1>
-    {matches.currentMatches.length > 0 && <h2>Next Match</h2>}
-    {matches.currentMatches.map((match: MatchT) => <Match match={match} />)}
-    {matches.nextMatches.length > 0 && <h2>Next Match</h2>}
-    {matches.nextMatches.map((match: MatchT) => <Match match={match} />)}
-    {matches.lastMatches.length > 0 && <h2>Previous Match</h2>}
-    {matches.lastMatches.map((match: MatchT) => <Match match={match} />)}
+    {feed.currentMatches.length > 0 && <h2>Next Match</h2>}
+    {feed.currentMatches.map((match: MatchT) => <Match match={match} />)}
+    {feed.nextMatches.length > 0 && <h2>Next Match</h2>}
+    {feed.nextMatches.map((match: MatchT) => <Match match={match} />)}
+    {feed.lastMatches.length > 0 && <h2>Previous Match</h2>}
+    {feed.lastMatches.map((match: MatchT) => <Match match={match} />)}
 </Layout>
