@@ -13,8 +13,8 @@ const person = people[personNameLowerCase];
 ---
 
 <Layout title="{person.name}">
-	<h1>{person.name}</h1>
-	<ul>
-		{person.teams.map((team) => <li><Team name={team.name} /></li>)}
-	</ul>
+    <h1>{person.name}</h1>
+    <ul>
+        {person.teams.map((team) => <li><Team name={team.name} /></li>)}
+    </ul>
 </Layout>

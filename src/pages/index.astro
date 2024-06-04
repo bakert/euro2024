@@ -7,9 +7,9 @@ const matches = await response.json();
 ---
 
 <Layout title="Home">
-	<h1>Home</h1>
-	{matches.nextMatches && <h2>Next Match</h2>}
-	{matches.nextMatches && matches.nextMatches.map((match) => <Match match={match} />)}
-	{matches.lastMatches && <h2>Previous Match</h2>}
-	{matches.lastMatches && matches.lastMatches.map((match) => <Match match={match} />)}
+    <h1>Home</h1>
+    {matches.nextMatches && <h2>Next Match</h2>}
+    {matches.nextMatches && matches.nextMatches.map((match) => <Match match={match} />)}
+    {matches.lastMatches && <h2>Previous Match</h2>}
+    {matches.lastMatches && matches.lastMatches.map((match) => <Match match={match} />)}
 </Layout>
