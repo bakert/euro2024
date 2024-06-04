@@ -1,4 +1,10 @@
 ---
+import Footer from '../components/Footer.astro';
+import Hamburger from '../components/Hamburger.astro';
+import Navigation from '../components/Navigation.astro';
+
+import '../styles/global.css';
+
 interface Props {
 	title: string;
 }
@@ -6,46 +12,43 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>{title} – Euro 2024 Sweepstake</title>
 	</head>
 	<body>
-		<slot />
+		<div class="app-bar">
+			<Hamburger />
+			<a href="/"><h1>Euro 2024</h1></a>
+		</div>
+		<Navigation />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+		<script>
+	    	import "../scripts/menu.js";
+	    </script>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+
+<style>
+	.app-bar {
+		border-bottom: 1px solid var(--body-text-color);
+		padding-bottom: 16px;
+		display: grid;
+		grid-template: "hamburger title";
+		grid-template-columns: auto 1fr;
 	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
+	.hamburger {
+		grid-area: hamburger;
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+	.app-bar h1 {
+		grid-area: title;
+		margin: 0;
 	}
 </style>
