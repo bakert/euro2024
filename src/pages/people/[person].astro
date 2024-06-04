@@ -1,10 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Team from "../../components/Team.astro";
-import { people } from "../../data/data.js";
-import type { PersonT, TeamT } from "../../models/models.ts";
+import Layout from "../../layouts/Layout.astro"
+import Team from "../../components/Team.astro"
+import { people } from "../../data/data.js"
+import type { PersonT, TeamT } from "../../models/models.ts"
 
-const { person: personNameLowerCase } = Astro.params;
+const { person: personNameLowerCase } = Astro.params
 
 const person: PersonT = people[personNameLowerCase as string];
 ---

@@ -1,18 +1,18 @@
 ---
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
-dayjs.extend(advancedFormat);
+import dayjs from "dayjs"
+import advancedFormat from "dayjs/plugin/advancedFormat"
+dayjs.extend(advancedFormat)
 
-import Person from "./Person.astro";
-import Team from "./Team.astro";
+import Person from "./Person.astro"
+import Team from "./Team.astro"
 
-const { match } = Astro.props;
+const { match } = Astro.props
 
-let [homeScore, awayScore, divider] = ["", "", "v"];
+let [homeScore, awayScore, divider] = ["", "", "v"]
 if (match.score) {
-    homeScore = match.score.extraTime ? match.score.extraTime.home : match.score.regular.home;
-    awayScore = match.score.extraTime ? match.score.extraTime.away : match.score.regular.away;
-    divider = "–";
+    homeScore = match.score.extraTime ? match.score.extraTime.home : match.score.regular.home
+    awayScore = match.score.extraTime ? match.score.extraTime.away : match.score.regular.away
+    divider = "–"
 }
 ---
 <div class="match">

@@ -1,30 +1,30 @@
 export const dave = {
     name: "Dave",
-};
+}
 export const fra = {
     name: "Fra",
-};
+}
 export const tom = {
     name: "Tom",
-};
+}
 export const row = {
     name: "Row",
-};
+}
 export const chris = {
     name: "Chris",
-};
+}
 export const melody = {
     name: "Melody",
-};
+}
 export const evelyn = {
     name: "Evelyn",
-};
+}
 export const iris = {
     name: "Iris",
-};
+}
 export const hannah = {
     name: "Hannah",
-};
+}
 
 export const people = {
     [chris.name.toLowerCase()]: chris,
@@ -36,4 +36,4 @@ export const people = {
     [melody.name.toLowerCase()]: melody,
     [row.name.toLowerCase()]: row,
     [tom.name.toLowerCase()]: tom,
-};
+}

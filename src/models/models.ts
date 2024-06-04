@@ -1,21 +1,21 @@
 export interface PersonT {
     name: string,
     teams?: TeamT[],
-};
+}
 
 export interface TeamT {
-    name: string;
-    code: string;
-    person?: PersonT;
-};
+    name: string
+    code: string
+    person?: PersonT
+}
 
 export interface StadiumT {
-    name: string;
-};
+    name: string
+}
 
 interface ScoreT {
-    home: number;
-    away: number;
+    home: number
+    away: number
 }
 
 export enum Status {
@@ -25,23 +25,22 @@ export enum Status {
 }
 
 export interface MatchT {
-    status: Status;
-    home: TeamT;
-    away: TeamT;
-    kickoff: Date;
-    stage: string;
-    stadium: StadiumT;
+    status: Status
+    home: TeamT
+    away: TeamT
+    kickoff: Date
+    stage: string
+    stadium: StadiumT
     score?: {
-        regular?: ScoreT;
-        penalty?: ScoreT;
+        regular?: ScoreT
+        penalty?: ScoreT
     }
-};
+}
 
-// BAKERT death to semicolons
 export interface FeedT {
-    matches: MatchT[];
+    matches: MatchT[]
     // BAKERT maybe just generate these in home
-    currentMatches: MatchT[];
-    lastMatches: MatchT[];
-    nextMatches: MatchT[];
-};
+    currentMatches: MatchT[]
+    lastMatches: MatchT[]
+    nextMatches: MatchT[]
+}
