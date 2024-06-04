@@ -27,14 +27,4 @@ matches.forEach((match: MatchT) => {
     feed.matches.push(m)
 })
 
-const upcomingMatches = feed.matches.filter((m: MatchT) => m.status === Status.UPCOMING)
-const minKickoffTime = Math.min(...upcomingMatches.map(m => m.kickoff.getTime()))
-feed.nextMatches = upcomingMatches.filter((m: MatchT) => m.kickoff.getTime() === minKickoffTime)
-
-const finishedMatches = feed.matches.filter((m: MatchT) => m.status === Status.FINISHED)
-const maxKickoffTime = Math.max(...finishedMatches.map(m => m.kickoff.getTime()))
-feed.lastMatches = finishedMatches.filter((m: MatchT) => m.kickoff.getTime() === maxKickoffTime)
-
-feed.currentMatches = feed.matches.filter((m: MatchT) => m.status === Status.CURRENT)
-
 export default feed

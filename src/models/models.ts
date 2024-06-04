@@ -39,8 +39,4 @@ export interface MatchT {
 
 export interface FeedT {
     matches: MatchT[]
-    // BAKERT maybe just generate these in home
-    currentMatches: MatchT[]
-    lastMatches: MatchT[]
-    nextMatches: MatchT[]
 }
