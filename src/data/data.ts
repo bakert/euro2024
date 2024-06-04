@@ -1,5 +1,5 @@
-import { people, dave, fra, tom, row, chris, melody, evelyn, iris, hannah } from "../data/people.js";
-import { teams, germany, belgium, france, portugal, scotland, spain, turkiye, austria, england, hungary, slovakia, albania, czechia, denmark, netherlands, romania, switzerland, slovenia, serbia, croatia, italy, poland, georgia, ukraine } from "../data/teams.js";
+import { people, dave, fra, tom, row, chris, melody, evelyn, iris, hannah } from "../data/people.ts";
+import { teams, germany, belgium, france, portugal, scotland, spain, turkiye, austria, england, hungary, slovakia, albania, czechia, denmark, netherlands, romania, switzerland, slovenia, serbia, croatia, italy, poland, georgia, ukraine } from "../data/teams.ts";
 
 const personMap = Object.fromEntries(Object.values(people).map((person) => [person.name, structuredClone(person)]));
 const teamMap = Object.fromEntries(Object.values(teams).map((team) => [team.name, structuredClone(team)]));

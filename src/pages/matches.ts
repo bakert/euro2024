@@ -1,11 +1,8 @@
 import {
-    people,
-    teams,
-    dave, fra, tom, row, chris, melody, evelyn, iris, hannah,
-    germany, belgium, france, portugal, scotland, spain, turkiye, austria, england, hungary, slovakia, albania, czechia, denmark, netherlands, romania, switzerland, slovenia, serbia, croatia, italy, poland, georgia, ukraine,
+    germany, belgium, france, portugal, scotland, spain, turkiye, austria, england,
     olympiastadion
-} from "../data/data.js";
-import now from "../data/now.js";
+} from "../data/data.ts";
+import now from "../data/now.ts";
 
 const data = {
     matches: {
@@ -69,7 +66,7 @@ data.nextMatches = nextMatches;
 export const GET = async function GET() {
     return new Response(JSON.stringify(data), {
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         },
     });
 };

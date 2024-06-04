@@ -1,21 +1,24 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Match from "../../components/Match.astro";
-import { teams } from "../../data/teams.js";
-import now from "../../data/now.js";
+import { teams } from "../../data/teams.ts";
+import now from "../../data/now.ts";
+import type { TeamT, MatchT, FeedT } from "../../models/models.ts";
 
 const { team: teamNameLowerCase } = Astro.params;
-const team = teams[teamNameLowerCase];
+const team = teams[teamNameLowerCase as string];
 
-const response = await fetch('http://localhost:4321/matches');
-const matches = await response.json();
+const response = await fetch("http://localhost:4321/matches");
+const feed: FeedT = await response.json();
 
 // BAKERT maybe use info in the feed not times to bucket these.
 const started = new Date();
 started.setMinutes(now.getMinutes() - 150);
 
-const filter = (team, matches) => {
-    const [fixtures, inProgress, results] = [[], [], []];
+const filter = (team: TeamT, matches: MatchT[]) => {
+    const fixtures: MatchT[] = [];
+    const inProgress: MatchT[] = [];
+    const results: MatchT[] = [];
 
     Object.values(matches).forEach(match => {
         if ((match.home && match.home.name === team.name) ||
@@ -33,7 +36,7 @@ const filter = (team, matches) => {
     return [fixtures, inProgress, results];
 };
 
-const [fixtures, inProgress, results] = filter(team, matches.matches);
+const [fixtures, inProgress, results] = filter(team, Object.values(feed.matches));
 ---
 <Layout title={team.name}>
     <h1>{team.name}</h1>

@@ -1,20 +1,17 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Navigation from '../../components/Navigation.astro';
-import Team from '../../components/Team.astro';
-import { people } from '../../data/data.js';
+import Layout from "../../layouts/Layout.astro";
+import Team from "../../components/Team.astro";
+import { people } from "../../data/data.js";
+import type { PersonT, TeamT } from "../../models/models.ts";
 
 const { person: personNameLowerCase } = Astro.params;
 
-const response = await fetch('http://localhost:4321/matches');
-const matches = await response.json();
-
-const person = people[personNameLowerCase];
+const person: PersonT = people[personNameLowerCase as string];
 ---
 
 <Layout title="{person.name}">
     <h1>{person.name}</h1>
     <ul>
-        {person.teams.map((team) => <li><Team name={team.name} /></li>)}
+        {person.teams?.map((team: TeamT) => <li><Team name={team.name} /></li>)}
     </ul>
 </Layout>

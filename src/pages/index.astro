@@ -1,15 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Match from '../components/Match.astro'
+import Layout from "../layouts/Layout.astro";
+import Match from "../components/Match.astro"
+import type { MatchT } from "../models/models.ts";
 
-const response = await fetch('http://localhost:4321/matches');
+const response = await fetch("http://localhost:4321/matches");
 const matches = await response.json();
 ---
 
 <Layout title="Home">
     <h1>Home</h1>
     {matches.nextMatches && <h2>Next Match</h2>}
-    {matches.nextMatches && matches.nextMatches.map((match) => <Match match={match} />)}
+    {matches.nextMatches && matches.nextMatches.map((match: MatchT) => <Match match={match} />)}
     {matches.lastMatches && <h2>Previous Match</h2>}
-    {matches.lastMatches && matches.lastMatches.map((match) => <Match match={match} />)}
+    {matches.lastMatches && matches.lastMatches.map((match: MatchT) => <Match match={match} />)}
 </Layout>
