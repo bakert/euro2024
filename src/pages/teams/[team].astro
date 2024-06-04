@@ -3,40 +3,22 @@ import Layout from "../../layouts/Layout.astro";
 import Match from "../../components/Match.astro";
 import { teams } from "../../data/teams.ts";
 import now from "../../data/now.ts";
+import matches from "../../data/matches.ts";
 import type { TeamT, MatchT, FeedT } from "../../models/models.ts";
 
 const { team: teamNameLowerCase } = Astro.params;
 const team = teams[teamNameLowerCase as string];
 
-const response = await fetch("https://bluebones.net/matches.json");
-const feed: FeedT = await response.json();
+const thisTeam = (match) => {
+    return ((match.home && match.home.name === team.name) ||
+        (match.away && match.away.name === team.name));
+}
 
-// BAKERT maybe use info in the feed not times to bucket these.
-const started = new Date();
-started.setMinutes(now.getMinutes() - 150);
+const thisTeamMatches = matches.matches.filter((m) => thisTeam(m))
+const fixtures = thisTeamMatches.filter((m) => m.status === "UPCOMING");
+const inProgress = thisTeamMatches.filter((m) => m.status === "CURRENT");
+const results = thisTeamMatches.filter((m) => m.status === "FINISHED");
 
-const filter = (team: TeamT, matches: MatchT[]) => {
-    const fixtures: MatchT[] = [];
-    const inProgress: MatchT[] = [];
-    const results: MatchT[] = [];
-
-    Object.values(matches).forEach(match => {
-        if ((match.home && match.home.name === team.name) ||
-            (match.away && match.away.name === team.name)) {
-            const d = new Date(match.kickoff);
-            if (d > now) {
-                fixtures.push(match);
-            } else if (d > started) {
-                inProgress.push(match);
-            } else {
-                results.push(match);
-            }
-        }
-    });
-    return [fixtures, inProgress, results];
-};
-
-const [fixtures, inProgress, results] = filter(team, Object.values(feed.matches));
 ---
 <Layout title={team.name}>
     <h1>{team.name}</h1>

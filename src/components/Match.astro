@@ -18,14 +18,14 @@ if (match.score) {
 <div class="match">
     <div class="home">
         <Team name={match.home.name} />
-        <Person class="person" name={match.home.person.name} />
+        {match.home.person && <Person class="person" name={match.home.person.name} />}
     </div>
     <div class="score-home">{homeScore}</div>
     <div class="divider">{divider}</div>
     <div class="score-away">{awayScore}</div>
     <div class="away">
         <Team name={match.away.name} />
-        <Person class="person" name={match.away.person.name} />
+        {match.away.person && <Person class="person" name={match.away.person.name} />}
     </div>
     <div class="extra-time">{match.score?.extraTime ? "AET" : ""}</div>
     <div class="pens-home">{match.score?.penalties?.home}</div>

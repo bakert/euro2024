@@ -26,7 +26,6 @@ export type MatchT = {
     stadium: StadiumT,
     score?: {
         regular?: ScoreT,
-        extraTime?: ScoreT,
         penalties?: ScoreT,
     }
 };
