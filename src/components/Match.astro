@@ -1,5 +1,7 @@
 ---
 import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+dayjs.extend(advancedFormat);
 
 import Person from "./Person.astro";
 import Team from "./Team.astro";
