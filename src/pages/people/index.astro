@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Person from '../../components/Person.astro';
+import { people } from '../../data/people.js';
+---
+<Layout title="People">
+    <h1>People</h1>
+    <ul>
+        {Object.values(people).map((person) => <li><Person name={person.name} /></li>)}
+    </ul>
+</Layout>

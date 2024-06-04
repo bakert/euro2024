@@ -1,0 +1,4 @@
+---
+const { class: className, name, ...rest } = Astro.props;
+---
+<a class={className} href={`/people/${name.toLowerCase()}/`} {...rest}>{name}</a>

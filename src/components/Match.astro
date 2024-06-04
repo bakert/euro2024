@@ -1,0 +1,136 @@
+---
+import dayjs from "dayjs";
+
+import Person from "./Person.astro";
+import Team from "./Team.astro";
+import now from "../data/now.js";
+
+const { match } = Astro.props;
+
+let [homeScore, awayScore, divider] = ['', '', 'v'];
+if (match.score) {
+    homeScore = match.score.extraTime ? match.score.extraTime.home : match.score.regular.home;
+    awayScore = match.score.extraTime ? match.score.extraTime.away : match.score.regular.away;
+    divider = '–';
+}
+---
+<div class="match">
+    <div class="home">
+        <Team name={match.home.name} />
+        <Person class="person" name={match.home.person.name} />
+    </div>
+    <div class="score-home">{homeScore}</div>
+    <div class="divider">{divider}</div>
+    <div class="score-away">{awayScore}</div>
+    <div class="away">
+        <Team name={match.away.name} />
+        <Person class="person" name={match.away.person.name} />
+    </div>
+    <div class="extra-time">{match.score?.extraTime ? 'AET' : ''}</div>
+    <div class="pens-home">{match.score?.penalties?.home}</div>
+    <div class="pens-div">{match.score?.penalties ? '–' : ''}</div>
+    <div class={`pens-away ${match.score?.penalties ? 'has-pens' : ''}`}>{match.score?.penalties?.away}</div>
+    <div class="stage">{match.stage}</div>
+    <div class="kickoff">{dayjs(match.kickoff).format("MMMM Do, H:mma").replace(':00', '')}</div>
+    <div class="stadium">{match.stadium.name}</div>
+</div>
+
+<style>
+    :root {
+        --score-font-size: 22px;
+        --result-font-size: 22px;
+        --person-font-size: 14px;
+        --details-font-size: 14px;
+    }
+    .match {
+        background-color: var(--card-background-color);
+        color: var(--card-text-color);
+        border-radius: 24px;
+        display: grid;
+        font-size: var(--score-font-size);
+        line-height: 1;
+        max-width: 20em;
+        padding-top: 8px;
+        grid-template-columns: 1fr 2ch 1ch 2ch 1fr;
+        grid-template-areas: 
+            "home       score-home divider    score-away away"
+            "extra-time extra-time extra-time extra-time extra-time"
+            "pens-home  pens-home  pens-div   pens-away  pens-away"
+            "stage      stage      stage      stage      stage"
+            "kickoff    kickoff    kickoff    kickoff    kickoff"
+            "stadium    stadium    stadium    stadium    stadium"
+    }
+    .home, .away {
+        font-size: var(--result-font-size);
+    }
+    .stage, .kickoff, .stadium, .extra-time, .pens-home, .pens-div, .pens-away {
+        font-size: var(--details-font-size);
+        line-height: 1.5;
+    }
+    .stage {
+        padding-top: 8px;
+    }
+    .kickoff, .stadium {
+        color: var(--deemphasized-text-color);
+    }
+    .score, .extra-time, .stage, .kickoff, .stadium, .divider, .pens-div {
+        text-align: center;
+    }
+    .score-home, .home, .pens-home {
+        text-align: right;
+    }
+    .person {
+        color: var(--deemphasized-text-color);
+        font-size: var(--person-font-size);
+    }
+    .has-pens:after {
+        content: "pens";
+        margin-left: 4px;
+        position: absolute;
+    }
+
+
+    /* Grid Areas */
+
+    .home {
+        grid-area: home;
+    }
+    .score-home {
+        grid-area: score-home;
+    }
+    .divider {
+        grid-area: divider;
+    }
+    .score-away {
+        grid-area: score-away;
+    }
+    .away {
+        grid-area: away;
+    }
+
+    .extra-time {
+        grid-area: extra-time;
+    }
+
+    .pens-home {
+        grid-area: pens-home;
+    }
+    .pens-div {
+        grid-area: pens-div;
+    }
+    .pens-away {
+        grid-area: pens-away;
+    }
+
+    .stage {
+        grid-area: stage;
+    }
+
+    .kickoff {
+        grid-area: kickoff;
+    }
+
+    .stadium {
+        grid-area: stadium;
+    }
+</style>

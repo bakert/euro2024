@@ -1,0 +1,94 @@
+:root {
+    /* Colors from the Euro 2024 logo */
+    --blue: #143cdb;
+    --white: #ffffff;
+    --green: #00ba5d;
+    --red: #ff0000;
+    --black: #1e1e27;
+    --yellow: #ffcb00;
+    --pale-blue: #d5e3eb;
+
+    --highlight: var(--green);
+
+    --body-background-color: rgb(51, 51, 51);
+    --body-text-color: #fff;
+    --card-background-color: rgb(51, 51, 51);
+    --card-text-color: #fff;
+    --deemphasized-text-color: #bbb;
+}
+
+/* Latin only */
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/oswald/v53/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUZiZSSUhiCXAA.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+html {
+    font-family: Oswald, sans-serif;
+    height: 100vh;
+}
+
+body {
+    background-color: var(--body-background-color);
+    color: var(--body-text-color);
+    font-size: 24px;
+    height: 100vh;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 80ch;
+    padding: 1rem;
+    line-height: 1.5;
+}
+
+* {
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+h1, h2, p, th, td, li {
+    padding: 0 16px;
+}
+
+h1, h2 {
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    margin-top: 32px;
+    padding-bottom: 0;
+}
+
+nav a {
+    color: var(--body-text-color);
+}
+
+a {
+    color: var(--body-text-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 636px) {
+    .hamburger {
+        display: none;
+    }
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

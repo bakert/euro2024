@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Match from "../../components/Match.astro";
+import { teams } from "../../data/teams.js";
+import now from "../../data/now.js";
+
+const { team: teamNameLowerCase } = Astro.params;
+const team = teams[teamNameLowerCase];
+
+const response = await fetch('http://localhost:4321/matches');
+const matches = await response.json();
+
+// BAKERT maybe use info in the feed not times to bucket these.
+const started = new Date();
+started.setMinutes(now.getMinutes() - 150);
+
+const filter = (team, matches) => {
+    const [fixtures, inProgress, results] = [[], [], []];
+
+    Object.values(matches).forEach(match => {
+        if ((match.home && match.home.name === team.name) ||
+            (match.away && match.away.name === team.name)) {
+            const d = new Date(match.kickoff);
+            if (d > now) {
+                fixtures.push(match);
+            } else if (d > started) {
+                inProgress.push(match);
+            } else {
+                results.push(match);
+            }
+        }
+    });
+    return [fixtures, inProgress, results];
+};
+
+const [fixtures, inProgress, results] = filter(team, matches.matches);
+---
+<Layout title={team.name}>
+    <h1>{team.name}</h1>
+    {inProgress.length > 0 && <h2>In Progress</h2>}
+    {inProgress.map((match) => <Match match={match} />)}
+    {fixtures.length > 0 && <h2>Fixtures</h2>}
+    {fixtures.map((match) => <Match match={match} />)}
+    {results.length > 0 && <h2>Results</h2>}
+    {results.map((match) => <Match match={match} />)}
+</Layout>
