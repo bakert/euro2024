@@ -1,8 +1,8 @@
 import {
     teams
 } from "../data/data.ts";
-import now from "../data/now.ts";
-import type { FeedT } from "../models/models.ts";
+import { Status } from "../models/models.ts";
+import type { FeedT, MatchT } from "../models/models.ts";
 
 const response = await fetch("https://bluebones.net/matches.json");
 const matches = await response.json();
@@ -14,36 +14,28 @@ const data: FeedT = {
     nextMatches: [],
 }
 
-matches.forEach((match) => {
-    const home = teams[match.home.name] ?? match.home; // BAKERT typing of this nonsense
+matches.forEach((match: MatchT) => {
+    const home = teams[match.home.name] ?? match.home;
     const away = teams[match.away.name] ?? match.away;
-    // BAKERT can maybe do some clever ...rest stuff here
-    const m = {
-        status: match.status,
-        kickoff: match.kickoff,
-        stage: match.stage,
+    const kickoff = new Date(match.kickoff);
+    const m: MatchT = {
+        ...match,
+        kickoff: kickoff,
         home: home,
         away: away,
-        stadium: match.stadium,
     };
-    if (match.score) {
-        m.score = match.score;
-    }
-    if (match.penalty) {
-        m.penalty = match.penalty;
-    }
     data.matches.push(m);
 });
 
-const upcomingMatches = matches.filter(m => m.status === "UPCOMING");
-const minKickoffDate = Math.min(...upcomingMatches.map(m => new Date(m.kickoff).getTime()));
-data.nextMatches = upcomingMatches.filter(m => new Date(m.kickoff).getTime() === minKickoffDate);
+const upcomingMatches = data.matches.filter((m: MatchT) => m.status === Status.UPCOMING);
+const minKickoffDate = Math.min(...upcomingMatches.map(m => m.kickoff.getTime()));
+data.nextMatches = upcomingMatches.filter((m: MatchT) => m.kickoff.getTime() === minKickoffDate);
 
-const finishedMatches = matches.filter(m => m.status === "FINISHED");
-const maxKickoffDate = Math.max(...finishedMatches.map(m => new Date(m.kickoff).getTime()));
-data.lastMatches = finishedMatches.filter(m => new Date(m.kickoff).getTime() === maxKickoffDate);
+const finishedMatches = data.matches.filter((m: MatchT) => m.status === Status.FINISHED);
+const maxKickoffDate = Math.max(...finishedMatches.map(m => m.kickoff));
+data.lastMatches = finishedMatches.filter((m: MatchT) => m.kickoff === maxKickoffDate);
 
-data.currentMatches = data.matches.filter((m) => m.status === "CURRENT")
+data.currentMatches = data.matches.filter((m: MatchT) => m.status === Status.CURRENT)
 
 // BAKERT the word matches is working overtime here. better names
 export default data;

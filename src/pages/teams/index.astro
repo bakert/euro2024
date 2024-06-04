@@ -5,6 +5,7 @@ import { teams } from "../../data/teams.ts";
 ---
 <Layout title="Teams">
     <h1>Teams</h1>
+    {/* BAKERT better layout here? Flags? Status? */}
     <ul>
         {Object.values(teams).map((team) => <li><Team name={team.name} /></li>)}
     </ul>

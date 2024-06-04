@@ -28,9 +28,9 @@ if (match.score) {
         {match.away.person && <Person class="person" name={match.away.person.name} />}
     </div>
     <div class="extra-time">{match.score?.extraTime ? "AET" : ""}</div>
-    <div class="pens-home">{match.score?.penalties?.home}</div>
-    <div class="pens-div">{match.score?.penalties ? "–" : ""}</div>
-    <div class={`pens-away ${match.score?.penalties ? "has-pens" : ""}`}>{match.score?.penalties?.away}</div>
+    <div class="pens-home">{match.score?.penalty?.home}</div>
+    <div class="pens-div">{match.score?.penalty ? "–" : ""}</div>
+    <div class={`pens-away ${match.score?.penalty ? "has-pens" : ""}`}>{match.score?.penalty?.away}</div>
     <div class="stage">{match.stage}</div>
     <div class="kickoff">{dayjs(match.kickoff).format("MMMM Do, H:mma").replace(":00", "")}</div>
     <div class="stadium">{match.stadium.name}</div>

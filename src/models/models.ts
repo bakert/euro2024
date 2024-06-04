@@ -1,37 +1,47 @@
-export type PersonT = {
+export interface PersonT {
     name: string,
     teams?: TeamT[],
 };
 
-export type TeamT = {
-    name: string,
-    code: string,
-    person?: PersonT,
+export interface TeamT {
+    name: string;
+    code: string;
+    person?: PersonT;
 };
 
-export type StadiumT = {
-    name: string,
+export interface StadiumT {
+    name: string;
 };
 
-type ScoreT = {
-    home: number,
-    away: number,
+interface ScoreT {
+    home: number;
+    away: number;
 }
 
-export type MatchT = {
-    home: TeamT,
-    away: TeamT,
-    kickoff: Date,
-    stage: string,
-    stadium: StadiumT,
+export enum Status {
+    UPCOMING = "UPCOMING",
+    CURRENT = "CURRENT",
+    FINISHED = "FINISHED",
+}
+
+export interface MatchT {
+    status: Status;
+    home: TeamT;
+    away: TeamT;
+    kickoff: Date;
+    stage: string;
+    stadium: StadiumT;
     score?: {
-        regular?: ScoreT,
-        penalties?: ScoreT,
+        regular?: ScoreT;
+        penalty?: ScoreT;
     }
 };
 
-export type FeedT = {
-    matches: { [key: string]: MatchT },
-    lastMatches: MatchT[],
-    nextMatches: MatchT[],
+// BAKERT death to semicolons
+export interface FeedT {
+    matches: MatchT[];
+    // BAKERT maybe just generate these in home
+    currentMatches: MatchT[];
+    lastMatches: MatchT[];
+    nextMatches: MatchT[];
 };
