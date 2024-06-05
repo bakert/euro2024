@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (format === "fromNow") {
             t.textContent = dayjs(datetime).fromNow();
         } else {
-            t.textContent = dayjs(datetime).format(format);
+            t.textContent = dayjs(datetime).format(format).replace(":00", "");
         }
     });
 });
