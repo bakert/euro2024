@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import Match from "../../components/Match.astro"
+import { matches } from "../../data/data.ts"
+
+const { type: matchTypeLowerCase } = Astro.params
+const currentMatches = matches.filter((match) => match.status === "CURRENT")
+const filteredMatches = matches.filter((match) => match.status.toLowerCase() === matchTypeLowerCase)
+
+// titlecase matchTypeLowerCase for the title
+const title = matchTypeLowerCase + " Matches"
+---
+<Layout title={title}>
+    {currentMatches.length > 0
+        ?
+            <>
+                <h2>Current Match</h2>
+                {currentMatches.map((match) => <Match match={match} />)}
+            </>
+        : null
+    }
+    <h1>{title}</h1>
+    {filteredMatches.length === 0
+        ? <p>No matches to show</p>
+        : <>{filteredMatches.map((match) => <Match match={match} />)}</>
+    }
+</Layout>
