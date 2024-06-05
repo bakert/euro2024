@@ -1,20 +1,15 @@
 :root {
-    /* Colors from the Euro 2024 logo */
-    --blue: #143cdb;
-    --white: #ffffff;
-    --green: #00ba5d;
-    --red: #ff0000;
-    --black: #1e1e27;
-    --yellow: #ffcb00;
-    --pale-blue: #d5e3eb;
-
-    --highlight: var(--green);
-
-    --body-background-color: rgb(51, 51, 51);
-    --body-text-color: #fff;
-    --card-background-color: rgb(51, 51, 51);
-    --card-text-color: #fff;
+    --background-color: rgb(51, 51, 51);
+    --text-color: #fff;
     --deemphasized-text-color: #bbb;
+
+    --small-font-size: 12px;
+    --normal-font-size: 14px;
+    --large-font-size: 18px;
+    --x-large-font-size: 22px;
+
+    --h2-font-size: 24px;
+    --h1-font-size: 42px;
 }
 
 /* Latin only */
@@ -27,14 +22,14 @@
 }
 
 html {
+    background-color: var(--background-color);
+    color: var(--text-color);
     font-family: Oswald, sans-serif;
+    font-size: var(--large-font-size);
     height: 100vh;
 }
 
 body {
-    background-color: var(--body-background-color);
-    color: var(--body-text-color);
-    font-size: 24px;
     height: 100vh;
     margin: 0 auto;
     width: 100%;
@@ -58,27 +53,34 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 42px;
+    font-size: var(--h1-font-size);
 }
 
 h2 {
-    font-size: 24px;
+    font-size: var(--h2-font-size);
     margin-bottom: 8px;
     margin-top: 32px;
     padding-bottom: 0;
 }
 
-nav a {
+a {
     color: var(--body-text-color);
 }
 
-a {
-    color: var(--body-text-color);
+.component a {
     text-decoration: none;
 }
 
-a:hover {
+.component a:hover, .person a:hover {
     text-decoration: underline;
+}
+
+.component a.eliminated  {
+    text-decoration: line-through;
+}
+
+.component a.eliminated:hover  {
+    text-decoration: underline line-through;
 }
 
 @media screen and (min-width: 636px) {
@@ -91,4 +93,13 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.name {
+    font-size: var(--x-large-font-size);
+}
+
+.team .person .name {
+    color: var(--deemphasized-text-color);
+    font-size: var(--large-font-size);
 }

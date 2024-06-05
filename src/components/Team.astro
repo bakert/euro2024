@@ -1,4 +1,40 @@
 ---
-const { class: className, name, ...rest } = Astro.props
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
+dayjs.extend(relativeTime)
+
+import Person from "./Person.astro"
+
+const { team, hidePerson, showUpcoming } = Astro.props
+const isEliminated = team.upcoming?.length + team.current?.length === 0
+const classes = "name" + (isEliminated ? " eliminated" : "")
+
+const nextMatch = team.upcoming?.length > 0 ? team.upcoming[0] : null;
+const oppositionName = nextMatch?.home.name === team.name ? nextMatch?.away.name : nextMatch?.home.name
+// BAKERT line-height when small text alongside big text pls
 ---
-<a class={className} href={`/teams/${name.toLowerCase()}/`} {...rest}>{name}</a>
+<span class="team component">
+    <span class="team-info">
+        {team.code
+            ? <a class={classes} href={`/teams/${team.name.toLowerCase()}/`}>{team.name}</a>
+            : <span class={classes}>{team.name}</span>
+        }
+        {!hidePerson && team.person && <Person person={team.person} />}
+    </span>
+    {showUpcoming && nextMatch
+        ?
+            <span class="upcoming">
+                v
+                <a href={`/teams/${oppositionName.toLowerCase()}/`}>{oppositionName}</a>
+                {dayjs(nextMatch.kickoff).fromNow()}
+            </span>
+        : null
+    }
+</span>
+
+<style>
+    .upcoming {
+        color: var(--deemphasized-text-color);
+        float: right;
+    }
+</style>

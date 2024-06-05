@@ -2,28 +2,26 @@
 import Layout from "../../layouts/Layout.astro"
 import Person from "../../components/Person.astro"
 import Team from "../../components/Team.astro"
-import { people } from "../../data/people.ts"
-import type { PersonT, TeamT } from "../../models/models.ts"
+import { people } from "../../data/data.ts"
+import type { TeamT } from "../../models/models.ts"
 
-const rows: [string, string[]][] = [];
-Object.values(people).forEach((person: PersonT) => {
-    rows.push([person.name, person.teams?.map((t: TeamT) => t.name) ?? []])
-})
-
+// BAKERT space before comma looks bad
 ---
 <Layout title="People">
     <h1>People</h1>
     <div class="people">
-        {rows.map(([person, teams]) =>
+        {Object.values(people).map((person) =>
             <div class="person">
-                <Person name={person} />
+                <Person person={person} />
             </div>
             <div class="teams owned">
-                {teams.map((t: string, index: number) => (
-                    <span class="team">
-                        <Team name={t} />{index < teams.length - 1 && <span>,</span>}
-                    </span>
-                ))}
+                {person.teams &&
+                    person.teams.map((team: TeamT, index: number) => (
+                        <span class="team">
+                            <Team team={team} hidePerson={true} />{index < person.teams!.length - 1 && <>,</>}
+                        </span>
+                    ))
+                }
             </div>
         )}
     </div>
@@ -36,10 +34,8 @@ Object.values(people).forEach((person: PersonT) => {
         grid-template-columns: 168px 1fr;
     }
 
-    /* BAKERT this is kind of the same as .person */
     .owned, .owned a {
         color: var(--deemphasized-text-color);
-        font-size: 18px;
-        /* BAKERT these sit too high - increase line-height? */
+        font-size: var(--large-font-size);
     }
 </style>

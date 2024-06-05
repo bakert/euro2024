@@ -3,64 +3,49 @@ import dayjs from "dayjs"
 import advancedFormat from "dayjs/plugin/advancedFormat"
 dayjs.extend(advancedFormat)
 
-import Person from "./Person.astro"
 import Team from "./Team.astro"
 
 const { match } = Astro.props
-
-let [homeScore, awayScore, divider] = ["", "", "v"]
-if (match.score) {
-    homeScore = match.score.extraTime ? match.score.extraTime.home : match.score.regular.home
-    awayScore = match.score.extraTime ? match.score.extraTime.away : match.score.regular.away
-    divider = "–"
-}
 ---
-<div class="match">
+<div class="match component">
     <div class="home">
-        <Team name={match.home.name} />
-        {match.home.person && <Person class="person" name={match.home.person.name} />}
+        <Team team={match.home} />
     </div>
-    <div class="score-home">{homeScore}</div>
-    <div class="divider">{divider}</div>
-    <div class="score-away">{awayScore}</div>
+    <div class="score-home">{match.score?.total.home}</div>
+    <div class="divider">{match.score ? '–' : 'v'}</div>
+    <div class="score-away">{match.score?.total.away}</div>
     <div class="away">
-        <Team name={match.away.name} />
-        {match.away.person && <Person class="person" name={match.away.person.name} />}
+        <Team team={match.away} />
     </div>
-    <div class="extra-time">{match.score?.extraTime ? "AET" : ""}</div>
     <div class="pens-home">{match.score?.penalty?.home}</div>
     <div class="pens-div">{match.score?.penalty ? "–" : ""}</div>
     <div class={`pens-away ${match.score?.penalty ? "has-pens" : ""}`}>{match.score?.penalty?.away}</div>
     <div class="stage">{match.stage}</div>
-    <div class="kickoff">{dayjs(match.kickoff).format("MMMM Do, H:mma").replace(":00", "")}</div>
+    <div class="kickoff">{dayjs(match.kickoff).format("MMMM Do, H:mma")}</div>
     <div class="stadium">{match.stadium.name}</div>
 </div>
 
 <style>
     :root {
-        --score-font-size: 22px;
-        --result-font-size: 22px;
-        --person-font-size: 14px;
-        --details-font-size: 14px;
+        --score-font-size: var(--x-large-font-size);
+        --result-font-size: var(--x-large-font-size);
+        --details-font-size: var(--normal-font-size);
     }
     .match {
-        background-color: var(--card-background-color);
-        color: var(--card-text-color);
         border-radius: 24px;
         display: grid;
         font-size: var(--score-font-size);
         line-height: 1;
         max-width: 20em;
         padding-top: 8px;
-        padding-bottom: 16px;
+        padding-bottom: 8px;
         grid-template-columns: 1fr 2ch 1ch 2ch 1fr;
         grid-template-areas: 
-            "home       score-home divider    score-away away"
-            "extra-time extra-time extra-time extra-time extra-time"
-            "pens-home  pens-home  pens-div   pens-away  pens-away"
-            "stage      stage      stage      stage      stage"
-            "kickoff    kickoff    kickoff    kickoff    kickoff"
-            "stadium    stadium    stadium    stadium    stadium"
+            "home      score-home divider  score-away away"
+            "pens-home pens-home  pens-div pens-away  pens-away"
+            "stage     stage      stage    stage      stage"
+            "kickoff   kickoff    kickoff  kickoff    kickoff"
+            "stadium   stadium    stadium  stadium    stadium"
     }
     .home, .away {
         font-size: var(--result-font-size);
@@ -80,10 +65,6 @@ if (match.score) {
     }
     .score-home, .home, .pens-home {
         text-align: right;
-    }
-    .person {
-        color: var(--deemphasized-text-color);
-        font-size: var(--person-font-size);
     }
     .has-pens:after {
         content: "pens";

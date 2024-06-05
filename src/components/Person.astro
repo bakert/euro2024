@@ -1,4 +1,10 @@
 ---
-const { class: className, name, ...rest } = Astro.props
+import type { TeamT } from "../models/models.ts"
+
+const { person } = Astro.props
+const isEliminated = person.teams.every((team: TeamT) => (team.upcoming?.length || 0) + (team.current?.length || 0)) === 0
+const classes = "name" + (isEliminated ? " eliminated" : "")
 ---
-<a class={className} href={`/people/${name.toLowerCase()}/`} {...rest}>{name}</a>
+<span class="person component">
+    <a class={classes} href={`/people/${person.name.toLowerCase()}/`}>{person.name}</a>
+</span>

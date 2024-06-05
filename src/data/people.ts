@@ -1,28 +1,30 @@
-export const dave = {
+import type { PersonT } from "../models/models.ts"
+
+export const dave: PersonT = {
     name: "Dave",
 }
-export const fra = {
+export const fra: PersonT = {
     name: "Fra",
 }
-export const tom = {
+export const tom: PersonT = {
     name: "Tom",
 }
-export const row = {
+export const row: PersonT = {
     name: "Row",
 }
-export const chris = {
+export const chris: PersonT = {
     name: "Chris",
 }
-export const melody = {
+export const melody: PersonT = {
     name: "Melody",
 }
-export const evelyn = {
+export const evelyn: PersonT = {
     name: "Evelyn",
 }
-export const iris = {
+export const iris: PersonT = {
     name: "Iris",
 }
-export const hannah = {
+export const hannah: PersonT = {
     name: "Hannah",
 }
 

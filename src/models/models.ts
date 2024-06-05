@@ -6,6 +6,9 @@ export interface PersonT {
 export interface TeamT {
     name: string
     code: string
+    upcoming?: MatchT[]
+    current?: MatchT[]
+    finished?: MatchT[]
     person?: PersonT
 }
 
@@ -35,8 +38,4 @@ export interface MatchT {
         regular?: ScoreT
         penalty?: ScoreT
     }
-}
-
-export interface FeedT {
-    matches: MatchT[]
 }

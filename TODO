@@ -1,5 +1,10 @@
 = Want
+- Remove AET and extraTime from web
 - TypeScript not js
+- More space between matches on team page
+- Team page could show a different view because you know Italy (or whoever) are in the match
+- Show that a team is eliminated if they are
+- Show a team's next fixtures on person page if they are not eliminated
 
 = Could
 - Map of Germany with Stadium highlighted

@@ -1,96 +1,98 @@
-export const germany = {
+import type { TeamT } from "../models/models.ts"
+
+export const germany: TeamT = {
     code: "GER",
     name: "Germany",
 }
-export const belgium = {
+export const belgium: TeamT = {
     code: "BEL",
     name: "Belgium",
 }
-export const france = {
+export const france: TeamT = {
     code: "FRA",
     name: "France",
 }
-export const portugal = {
+export const portugal: TeamT = {
     code: "POR",
     name: "Portugal",
 }
-export const scotland = {
+export const scotland: TeamT = {
     code: "SCO",
     name: "Scotland",
 }
-export const spain = {
+export const spain: TeamT = {
     code: "ESP",
     name: "Spain",
 }
-export const turkiye = {
+export const turkiye: TeamT = {
     code: "TUR",
-    name: "Turkiye",
+    name: "Türki̇ye",
 }
-export const austria = {
+export const austria: TeamT = {
     code: "AUS",
     name: "Austria",
 }
-export const england = {
+export const england: TeamT = {
     code: "ENG",
     name: "England",
 }
-export const hungary = {
+export const hungary: TeamT = {
     code: "HUN",
     name: "Hungary",
 }
-export const slovakia = {
+export const slovakia: TeamT = {
     code: "SLO",
     name: "Slovakia",
 }
-export const albania = {
+export const albania: TeamT = {
     code: "ALB",
     name: "Albania",
 }
-export const czechia = {
+export const czechia: TeamT = {
     code: "CZE",
     name: "Czechia",
 }
-export const denmark = {
+export const denmark: TeamT = {
     code: "DEN",
     name: "Denmark",
 }
-export const netherlands = {
+export const netherlands: TeamT = {
     code: "NLD",
     name: "Netherlands",
 }
-export const romania = {
+export const romania: TeamT = {
     code: "ROM",
     name: "Romania",
 }
-export const switzerland = {
+export const switzerland: TeamT = {
     code: "SWI",
     name: "Switzerland",
 }
-export const slovenia = {
+export const slovenia: TeamT = {
     code: "SLO",
     name: "Slovenia",
 }
-export const serbia = {
+export const serbia: TeamT = {
     code: "SER",
     name: "Serbia",
 }
-export const croatia = {
+export const croatia: TeamT = {
     code: "CRO",
     name: "Croatia",
 }
-export const italy = {
+export const italy: TeamT = {
     code: "ITA",
     name: "Italy",
 }
-export const poland = {
+export const poland: TeamT = {
     code: "POL",
     name: "Poland",
 }
-export const georgia = {
+export const georgia: TeamT = {
     code: "GEO",
     name: "Georgia",
 }
-export const ukraine = {
+export const ukraine: TeamT = {
     code: "UKR",
     name: "Ukraine",
 }

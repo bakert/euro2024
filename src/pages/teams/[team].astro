@@ -1,31 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import Match from "../../components/Match.astro"
-import { teams } from "../../data/teams.ts"
-import feed from "../../data/feed.ts"
-import { Status } from "../../models/models.ts"
-import type { MatchT } from "../../models/models.ts"
+import { teams } from "../../data/data.ts"
 
 const { team: teamNameLowerCase } = Astro.params
 const team = teams[teamNameLowerCase as string]
-
-const thisTeam = (match: MatchT) => {
-    return ((match.home && match.home.name === team.name) ||
-        (match.away && match.away.name === team.name))
-}
-
-const thisTeamMatches = feed.matches.filter((m) => thisTeam(m))
-const fixtures = thisTeamMatches.filter((m) => m.status === Status.UPCOMING)
-const inProgress = thisTeamMatches.filter((m) => m.status === Status.CURRENT)
-const results = thisTeamMatches.filter((m) => m.status === Status.FINISHED)
-
 ---
 <Layout title={team.name}>
     <h1>{team.name}</h1>
-    {inProgress.length > 0 && <h2>In Progress</h2>}
-    {inProgress.map((match) => <Match match={match} />)}
-    {fixtures.length > 0 && <h2>Fixtures</h2>}
-    {fixtures.map((match) => <Match match={match} />)}
-    {results.length > 0 && <h2>Results</h2>}
-    {results.map((match) => <Match match={match} />)}
+    {team.current!.length > 0 && <h2>In Progress</h2>}
+    {team.current!.map((match) => <Match match={match} />)}
+    {team.upcoming!.length > 0 && <h2>Fixtures</h2>}
+    {team.upcoming!.map((match) => <Match match={match} />)}
+    {team.finished!.length > 0 && <h2>Results</h2>}
+    {team.finished!.map((match) => <Match match={match} />)}
 </Layout>
