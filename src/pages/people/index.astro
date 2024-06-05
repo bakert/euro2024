@@ -4,8 +4,6 @@ import Person from "../../components/Person.astro"
 import Team from "../../components/Team.astro"
 import { people } from "../../data/data.ts"
 import type { TeamT } from "../../models/models.ts"
-
-// BAKERT space before comma looks bad
 ---
 <Layout title="People">
     <h1>People</h1>
@@ -18,7 +16,8 @@ import type { TeamT } from "../../models/models.ts"
                 {person.teams &&
                     person.teams.map((team: TeamT, index: number) => (
                         <span class="team">
-                            <Team team={team} hidePerson={true} />{index < person.teams!.length - 1 && <>,</>}
+                            <Team team={team} hidePerson={true} />
+                            {index < person.teams!.length - 1 && <>•</>}
                         </span>
                     ))
                 }
@@ -32,6 +31,10 @@ import type { TeamT } from "../../models/models.ts"
         display: grid;
         grid-template: "person teams";
         grid-template-columns: 168px 1fr;
+    }
+
+    .people > div {
+        padding-bottom: 16px;
     }
 
     .owned, .owned a {

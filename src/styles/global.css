@@ -27,15 +27,15 @@ html {
     font-family: Oswald, sans-serif;
     font-size: var(--large-font-size);
     height: 100vh;
+    line-height: 1.5;
 }
 
 body {
     height: 100vh;
     margin: 0 auto;
     width: 100%;
-    max-width: 80ch;
+    max-width: 67ch;
     padding: 1rem;
-    line-height: 1.5;
 }
 
 * {

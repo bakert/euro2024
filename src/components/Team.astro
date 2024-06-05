@@ -7,9 +7,9 @@ const classes = "name" + (isEliminated ? " eliminated" : "")
 
 const nextMatch = team.upcoming?.length > 0 ? team.upcoming[0] : null;
 const oppositionName = nextMatch?.home.name === team.name ? nextMatch?.away.name : nextMatch?.home.name
-// BAKERT line-height when small text alongside big text pls
+const className = showUpcoming && nextMatch ? "has-upcoming" : ""
 ---
-<span class="team component">
+<span class={`team component ${className}`}>
     <span class="team-info">
         {team.code
             ? <a class={classes} href={`/teams/${team.name.toLowerCase()}/`}>{team.name}</a>
@@ -29,8 +29,16 @@ const oppositionName = nextMatch?.home.name === team.name ? nextMatch?.away.name
 </span>
 
 <style>
+    .has-upcoming {
+        display: flex;
+        align-items: baseline;
+    }
+    .has-upcoming .team-info {
+        flex: 1;
+    }
+
     .upcoming {
         color: var(--deemphasized-text-color);
-        float: right;
+        vertical-align: baseline;
     }
 </style>
