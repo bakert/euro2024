@@ -9,7 +9,7 @@ const { person: personNameLowerCase } = Astro.params
 const person: PersonT = people[personNameLowerCase as string];
 ---
 
-<Layout title="{person.name}">
+<Layout title={person.name}>
     <h1>{person.name}</h1>
     <ul>
         {person.teams?.map((team: TeamT) => <li><Team team={team} hidePerson={true} showUpcoming={true} /></li>)}
