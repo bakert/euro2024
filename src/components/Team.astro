@@ -1,8 +1,4 @@
 ---
-import dayjs from "dayjs"
-import relativeTime from "dayjs/plugin/relativeTime"
-dayjs.extend(relativeTime)
-
 import Person from "./Person.astro"
 
 const { team, hidePerson, showUpcoming } = Astro.props
@@ -26,7 +22,7 @@ const oppositionName = nextMatch?.home.name === team.name ? nextMatch?.away.name
             <span class="upcoming">
                 v
                 <a href={`/teams/${oppositionName.toLowerCase()}/`}>{oppositionName}</a>
-                {dayjs(nextMatch.kickoff).fromNow()}
+                <time datetime={nextMatch.kickoff} data-format="fromNow">{nextMatch.kickoff.toDateString()}</time>
             </span>
         : null
     }

@@ -1,8 +1,4 @@
 ---
-import dayjs from "dayjs"
-import advancedFormat from "dayjs/plugin/advancedFormat"
-dayjs.extend(advancedFormat)
-
 import Team from "./Team.astro"
 
 const { match } = Astro.props
@@ -21,7 +17,7 @@ const { match } = Astro.props
     <div class="pens-div">{match.score?.penalty ? "–" : ""}</div>
     <div class={`pens-away ${match.score?.penalty ? "has-pens" : ""}`}>{match.score?.penalty?.away}</div>
     <div class="stage">{match.stage}</div>
-    <div class="kickoff">{dayjs(match.kickoff).format("MMMM Do, H:mma")}</div>
+    <div class="kickoff"><time datetime={match.kickoff} data-format="MMMM Do, H:mma">{match.kickoff.toLocaleDateString("en-GB")}</time></div>
     <div class="stadium">{match.stadium.name}</div>
 </div>
 
