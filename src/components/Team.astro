@@ -2,7 +2,7 @@
 import Person from "./Person.astro"
 import Probability from "./Probability.astro"
 
-const { team, isHeading, hidePerson, showUpcoming, showProbability } = Astro.props
+const { team, hidePerson, showUpcoming, showProbability } = Astro.props
 const isEliminated = team.upcoming?.length + team.current?.length === 0
 const classes = "name" + (isEliminated ? " eliminated" : "")
 
