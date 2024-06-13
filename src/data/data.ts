@@ -25,6 +25,12 @@ Object.values(people).forEach((person: PersonT) => {
 
 const response = await fetch("https://bluebones.net/matches.json")
 const rawMatches = await response.json()
+
+const oddsResponse = await fetch("https://bluebones.net/odds.json")
+const rawOdds = await oddsResponse.json()
+rawOdds["Czechia"] = rawOdds["Czech Republic"]
+rawOdds["Türkiye"] = rawOdds["Turkey"]
+
 const matches: MatchT[] = []
 
 rawMatches.forEach((match: MatchT) => {
@@ -60,6 +66,7 @@ Object.values(teams).forEach((team) => {
     team.upcoming = upcoming
     team.current = current
     team.finished = finished
+    team.probability = rawOdds[team.name]
 })
 
 export { people, teams, matches, bucket }

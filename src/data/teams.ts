@@ -26,7 +26,7 @@ export const spain: TeamT = {
 }
 export const turkiye: TeamT = {
     code: "TUR",
-    name: "Türki̇ye",
+    name: "Türkiye",
 }
 export const austria: TeamT = {
     code: "AUS",

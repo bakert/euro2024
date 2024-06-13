@@ -1,13 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import Match from "../../components/Match.astro"
+import Person from "../../components/Person.astro"
+import Team from "../../components/Team.astro"
 import { teams } from "../../data/data.ts"
+import Probability from "../../components/Probability.astro"
 
 const { team: teamNameLowerCase } = Astro.params
 const team = teams[teamNameLowerCase as string]
 ---
 <Layout title={team.name}>
     <h1>{team.name}</h1>
+    <p><Person person={team.person} /> <Probability probability={team.probability} /></p>
     {team.current!.length > 0 && <h2>In Progress</h2>}
     {team.current!.map((match) => <Match match={match} />)}
     {team.upcoming!.length > 0 && <h2>Fixtures</h2>}

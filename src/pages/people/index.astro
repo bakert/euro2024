@@ -10,13 +10,13 @@ import type { TeamT } from "../../models/models.ts"
     <div class="people">
         {Object.values(people).map((person) =>
             <div class="person">
-                <Person person={person} />
+                <Person person={person} showProbability={true} />
             </div>
             <div class="teams owned">
                 {person.teams &&
                     person.teams.map((team: TeamT, index: number) => (
                         <span class="team">
-                            <Team team={team} hidePerson={true} />
+                            <Team team={team} hidePerson={true}/>
                             {index < person.teams!.length - 1 && <>•</>}
                         </span>
                     ))

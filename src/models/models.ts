@@ -9,6 +9,7 @@ export interface TeamT {
     upcoming?: MatchT[]
     current?: MatchT[]
     finished?: MatchT[]
+    probability: number
     person?: PersonT
 }
 

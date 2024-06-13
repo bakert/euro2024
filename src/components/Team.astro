@@ -1,7 +1,8 @@
 ---
 import Person from "./Person.astro"
+import Probability from "./Probability.astro"
 
-const { team, hidePerson, showUpcoming } = Astro.props
+const { team, isHeading, hidePerson, showUpcoming, showProbability } = Astro.props
 const isEliminated = team.upcoming?.length + team.current?.length === 0
 const classes = "name" + (isEliminated ? " eliminated" : "")
 
@@ -12,10 +13,13 @@ const className = showUpcoming && nextMatch ? "has-upcoming" : ""
 <span class={`team component ${className}`}>
     <span class="team-info">
         {team.code
-            ? <a class={classes} href={`/teams/${team.name.toLowerCase()}/`}>{team.name}</a>
+            ? <a class={classes} href={`/teams/${team.name.toLowerCase()}/`}>
+                {team.name}
+             </a>
             : <span class={classes}>{team.name}</span>
         }
         {!hidePerson && team.person && <Person person={team.person} />}
+        {showProbability && <Probability probability={team.probability} />}
     </span>
     {showUpcoming && nextMatch
         ?

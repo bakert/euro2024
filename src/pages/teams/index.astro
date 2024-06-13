@@ -6,6 +6,6 @@ import { teams } from "../../data/data.ts"
 <Layout title="Teams">
     <h1>Teams</h1>
     <ul>
-        {Object.values(teams).map((team) => <li><Team team={team} showUpcoming={true} /></li>)}
+        {Object.values(teams).map((team) => <li><Team team={team} showUpcoming={true} showProbability={true} /></li>)}
     </ul>
 </Layout>
