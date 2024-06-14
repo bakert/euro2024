@@ -23,7 +23,7 @@ Object.values(people).forEach((person: PersonT) => {
     })
 })
 
-const response = await fetch("https://bluebones.net/matches.json")
+const response = await fetch("https://bluebones.net/matches.json?x=1")
 const rawMatches = await response.json()
 
 const oddsResponse = await fetch("https://bluebones.net/odds.json")

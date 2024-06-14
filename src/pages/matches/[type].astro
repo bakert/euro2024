@@ -2,9 +2,10 @@
 import Layout from "../../layouts/Layout.astro"
 import Match from "../../components/Match.astro"
 import { matches } from "../../data/data.ts"
+import { Status } from "../../models/models"
 
 const { type: matchTypeLowerCase } = Astro.params
-const currentMatches = matches.filter((match) => match.status === "CURRENT")
+const currentMatches = matches.filter((match) => match.status === Status.CURRENT)
 const filteredMatches = matches.filter((match) => match.status.toLowerCase() === matchTypeLowerCase)
 
 // titlecase matchTypeLowerCase for the title

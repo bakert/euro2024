@@ -24,7 +24,7 @@ interface ScoreT {
 
 export enum Status {
     UPCOMING = "UPCOMING",
-    CURRENT = "CURRENT",
+    CURRENT = "LIVE",
     FINISHED = "FINISHED",
 }
 
