@@ -1,7 +1,7 @@
 ---
 const { probability } = Astro.props
 ---
-<span class="probability">{(probability * 100).toFixed(1).replace(/\.0*$/, "")}%</span>
+<span class="probability">{((probability || 0) * 100).toFixed(1).replace(/\.0*$/, "")}%</span>
 
 <style>
     .probability {
