@@ -23,8 +23,7 @@ Object.values(people).forEach((person: PersonT) => {
     })
 })
 
-// Make sure we re-fetch every minute so we get in-running scores and odds.
-const ts = Math.floor(Date.now() / 1000 / 60)
+const ts = Math.floor(Date.now() / 1000)
 
 const response = await fetch("https://bluebones.net/matches.json?t=" + ts)
 const rawMatches = await response.json()
