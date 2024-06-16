@@ -7,6 +7,9 @@ import { Status } from "../../models/models"
 const { type: matchTypeLowerCase } = Astro.params
 const currentMatches = matches.filter((match) => match.status === Status.CURRENT)
 const filteredMatches = matches.filter((match) => match.status.toLowerCase() === matchTypeLowerCase)
+if (matchTypeLowerCase?.toUpperCase() === Status.FINISHED.toString()) {
+  filteredMatches.reverse();
+}
 
 // titlecase matchTypeLowerCase for the title
 const title = matchTypeLowerCase + " Matches"
